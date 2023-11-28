@@ -1,0 +1,111 @@
+From: Nicolas Dandrimont <olasd@debian.org>
+Date: Thu, 8 Oct 2015 08:41:10 -0700
+Subject: Remove cookies and tracking
+
+Forwarded: not-needed
+
+Patch-Name: 0003-Remove-cookies-and-tracking.patch
+---
+ cloud_sptheme/themes/cloud/layout.html       | 30 ----------------------------
+ cloud_sptheme/themes/cloud/static/cloud.js_t |  6 ------
+ cloud_sptheme/themes/cloud/theme.conf        |  2 +-
+ 3 files changed, 1 insertion(+), 37 deletions(-)
+
+diff --git a/cloud_sptheme/themes/cloud/layout.html b/cloud_sptheme/themes/cloud/layout.html
+index 27e4d61..16d89e5 100644
+--- a/cloud_sptheme/themes/cloud/layout.html
++++ b/cloud_sptheme/themes/cloud/layout.html
+@@ -31,7 +31,6 @@
+     {{ super() }}
+ 
+     {# add script file to instrument collapsable sections  and other features #}
+-    {{ compat_js_tag("_static/jquery.cookie.js") }}
+     {{ compat_js_tag("_static/cloud.base.js") }}
+     {{ compat_js_tag("_static/cloud.js") }}
+ 
+@@ -72,23 +71,6 @@
+ {% block extrahead -%}
+         {{ super() }}
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+-        {%- if theme_googleanalytics_id -%}
+-<script type="text/javascript">
+-var ga_enabled = !$.cookie('disable-ga');
+-if(ga_enabled){
+-  var _gaq = _gaq || [];
+-  _gaq.push(['_setAccount', '{{ theme_googleanalytics_id }}']);
+-  _gaq.push(['_setCookiePath', '{{ theme_googleanalytics_path }}']);
+-  _gaq.push(['_setDetectFlash', false]);
+-  _gaq.push(['_trackPageview']);
+-  (function() {
+-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+-  })();
+-}
+-</script>
+-        {%- endif %}
+ {%- endblock %}
+ 
+ {% block body -%}
+@@ -121,17 +103,5 @@ if(ga_enabled){
+ 
+ {% block footer -%}
+     {{ super() }}
+-    {%- if theme_googleanalytics_id -%}
+-<script type="text/javascript">
+-    if(ga_enabled){
+-        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+-        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '{{ theme_googleanalytics_path }}'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+-        document.write("</div>");
+-    }else{
+-        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+-        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '{{ theme_googleanalytics_path }}'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+-    };
+-</script>
+-    {%- endif %}
+     <!-- cloud_sptheme 1.4 -->
+ {%- endblock %}
+diff --git a/cloud_sptheme/themes/cloud/static/cloud.js_t b/cloud_sptheme/themes/cloud/static/cloud.js_t
+index e653a4f..760d9b6 100644
+--- a/cloud_sptheme/themes/cloud/static/cloud.js_t
++++ b/cloud_sptheme/themes/cloud/static/cloud.js_t
+@@ -241,10 +241,6 @@
+         var $doc = $('div.document'),
+             $hide = $('button#sidebar-hide'),
+             $show = $('button#sidebar-show'),
+-            copts = {
+-                // expires: 7,
+-                path: utils.rootpath
+-            };
+ 
+         // set sidebar state for current media size
+         var lastSmall = false,
+@@ -262,7 +258,6 @@
+             } else {
+                 largeState = visible;
+                 if(!visible) { smallState = false; }
+-                $.cookie("sidebar", visible ? "expanded" : "collapsed", copts);
+             }
+             $window.trigger("cloud-sidebar-toggled", visible);
+         }
+@@ -280,7 +275,6 @@
+         if(smallScreen){
+             setState(false);
+         } else {
+-            var value = $.cookie("sidebar");
+             {% if theme_defaultcollapsed | tobool %}
+                 if (!value) value = "collapsed";
+             {% endif %}
+diff --git a/cloud_sptheme/themes/cloud/theme.conf b/cloud_sptheme/themes/cloud/theme.conf
+index b426ac6..b90ebb4 100644
+--- a/cloud_sptheme/themes/cloud/theme.conf
++++ b/cloud_sptheme/themes/cloud/theme.conf
+@@ -183,7 +183,7 @@ index_category_color = #84ADBE
+ 
+ # font css url - for loading in fonts (eg google font dir)
+ # should include source for all fonts referenced by "headfont", "bodyfont", and "codeblockfont"
+-fontcssurl = https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&display=swap
++fontcssurl = 
+ 
+ # set google analytics tracker
+ googleanalytics_id =

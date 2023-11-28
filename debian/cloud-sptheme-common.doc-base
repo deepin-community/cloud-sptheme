@@ -1,0 +1,9 @@
+Document: cloud-sptheme
+Title: The Cloud Sphinx theme
+Author: Eli Collins
+Abstract: Documentation for the Cloud Sphinx theme
+Section: Programming/Python
+
+Format: HTML
+Index: /usr/share/doc/cloud-sptheme-common/html/index.html
+Files: /usr/share/doc/cloud-sptheme-common/html/*.html

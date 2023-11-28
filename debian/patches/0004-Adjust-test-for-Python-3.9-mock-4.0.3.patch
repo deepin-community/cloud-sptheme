@@ -1,0 +1,29 @@
+From: Sergio Durigan Junior <sergiodj@debian.org>
+Date: Fri, 5 Feb 2021 19:16:49 -0500
+Subject: Adjust test for Python 3.9 + mock 4.0.3
+
+The "exc_info" argument of the __exit__ function needs to be a valid
+tuple now.
+
+Signed-off-by: Sergio Durigan Junior <sergiodj@debian.org>
+
+Bug-Debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=980632
+Forwarded: not-yet
+Last-Updated: 2021-02-05
+---
+ cloud_sptheme/tests/test_ext_relbar_toc.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cloud_sptheme/tests/test_ext_relbar_toc.py b/cloud_sptheme/tests/test_ext_relbar_toc.py
+index 8b9357a..75f26d0 100644
+--- a/cloud_sptheme/tests/test_ext_relbar_toc.py
++++ b/cloud_sptheme/tests/test_ext_relbar_toc.py
+@@ -46,7 +46,7 @@ class UtilsTestCase(TestCase):
+ 
+         # patch sphinx's _() to be noop
+         patch = mock.patch.object(relbar_links, "_", side_effect=lambda s: s)
+-        self.addCleanup(patch.__exit__)
++        self.addCleanup(patch.__exit__, (None, None, None))
+         patch.__enter__()
+ 
+     def test_insert_no_links(self):

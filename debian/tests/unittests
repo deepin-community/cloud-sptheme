@@ -1,0 +1,9 @@
+#!/bin/sh
+set -efu
+
+cd "$AUTOPKGTEST_TMP"
+
+for py in $(py3versions -s); do
+	echo "=== $py ==="
+	$py -m unittest cloud_sptheme.tests.test_ext_relbar_toc
+done

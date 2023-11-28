@@ -1,5 +1,128 @@
-template-repository (1.0-1) unstable; urgency=medium
+cloud-sptheme (1.10.1.post20200504175005-6) unstable; urgency=medium
 
-  * Initial release
+  * Team upload.
+  * Move from jinja2 to markupsafe. (Closes: #1033435)
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Bastian Germann <bage@debian.org>  Thu, 30 Mar 2023 11:29:32 +0200
+
+cloud-sptheme (1.10.1.post20200504175005-5) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Trim trailing whitespace.
+  * Update standards version to 4.6.0, no changes needed.
+  * Update standards version to 4.6.1, no changes needed.
+  * Apply multi-arch hints. + cloud-sptheme-common: Add Multi-Arch: foreign.
+
+ -- Jelmer Vernooĳ <jelmer@debian.org>  Sat, 22 Oct 2022 11:25:49 +0100
+
+cloud-sptheme (1.10.1.post20200504175005-4) unstable; urgency=medium
+
+  * autopkgtest: Depend on python3-all. (Closes: #1001243)
+
+ -- Stefano Rivera <stefanor@debian.org>  Fri, 17 Dec 2021 16:29:41 -0400
+
+cloud-sptheme (1.10.1.post20200504175005-3) unstable; urgency=medium
+
+  * Team upload.
+  * Add autopkgtest.
+
+ -- Stefano Rivera <stefanor@debian.org>  Tue, 02 Nov 2021 11:43:34 -0700
+
+cloud-sptheme (1.10.1.post20200504175005-2) unstable; urgency=medium
+
+  * Team upload.
+  * Patch: Support Sphinx 4. (Closes: #997428)
+
+ -- Stefano Rivera <stefanor@debian.org>  Sun, 31 Oct 2021 14:18:57 -0700
+
+cloud-sptheme (1.10.1.post20200504175005-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Ondřej Nový ]
+  * d/control: Update Maintainer field with new Debian Python Team
+    contact address.
+  * d/control: Update Vcs-* fields with new Debian Python Team Salsa
+    layout.
+
+  [ Andreas Tille ]
+  * New upstream version
+  * Standards-Version: 4.5.1 (routine-update)
+  * debhelper-compat 13 (routine-update)
+  * cme fix dpkg-control
+  * Testsuite: autopkgtest-pkg-python (routine-update)
+
+  [ Sergio Durigan Junior ]
+  * d/p/0004-Adjust-test-for-Python-3.9-mock-4.0.3.patch: New patch.
+    On Python 3.9 + mock 4.0.3, the exc_info argument of the __exit__
+    function needs to be a valid tuple. (Closes: #980632)
+  * d/rules: Remove overrides and build theme using PYBUILD_AFTER_BUILD.
+    There is no need to override the dh_auto_* targets, so this change
+    removes these.  Also, build the documentation using
+    PYBUILD_AFTER_BUILD, and make sure to specify SPHINX_THEME=classic
+    when building, since we cannot easily use the "cloud" theme here.
+  * d/cloud-sptheme-common.install: Update documentation path.
+    The documentation is now being generated inside the
+    debian/cloud-sptheme/ directory, so we need to update the path here.
+  * d/clean: Don't clean now-inexistent "html" directory.
+    With the documentation being generated inside the
+    debian/cloud-sptheme/ directory, there is no need to remove the "html"
+    directory (which was being created at the root of the source tree)
+    anymore.
+
+ -- Sergio Durigan Junior <sergiodj@debian.org>  Fri, 05 Feb 2021 19:58:30 -0500
+
+cloud-sptheme (1.9.4-2) unstable; urgency=medium
+
+  * Team upload.
+  * d/control: Remove ancient X-Python-Version field
+  * Use 'python3 -m sphinx' instead of sphinx-build for building docs
+  * Use debhelper-compat instead of debian/compat.
+  * Use Python 3 for building docs.
+  * Drop Python 2 support.
+
+ -- Ondřej Nový <onovy@debian.org>  Wed, 31 Jul 2019 10:21:50 +0200
+
+cloud-sptheme (1.9.4-1) unstable; urgency=medium
+
+  [ Nicolas Dandrimont ]
+  * New upstream release (Closes: #854332)
+  * Update to gbp-pq unapplied patches format
+  * Refresh patches after git-dpm to gbp-pq conversion
+  * Remove upstream signing-key (no more signatures)
+  * Build docs without the fulltoc extension
+  * Update Homepage URL
+  * Add patch to fix FTBFS with sphinx 1.7+ (Closes: #896613)
+  * Update debhelper compat level to 11
+  * Update Standards Version to 4.1.4 (no further changes)
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+  * d/copyright: Use https protocol in Format field
+
+ -- Nicolas Dandrimont <olasd@debian.org>  Mon, 30 Apr 2018 21:00:08 +0200
+
+cloud-sptheme (1.8.0-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Fixed VCS URL (https)
+
+  [ Sandro Tosi ]
+  * Team upload
+  * New upstream release; Closes: #829230
+  * debian/control
+    - bump Standards-Version to 3.9.8 (no changes needed)
+
+ -- Sandro Tosi <morph@debian.org>  Tue, 13 Dec 2016 07:15:35 -0500
+
+cloud-sptheme (1.6-1~bpo70+1) wheezy-backports; urgency=medium
+
+  * Rebuild for wheezy-backports.
+
+ -- Nicolas Dandrimont <olasd@debian.org>  Thu, 20 Mar 2014 13:51:02 +0100
+
+cloud-sptheme (1.6-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #734952)
+
+ -- Nicolas Dandrimont <olasd@debian.org>  Sat, 18 Jan 2014 22:13:27 +0100

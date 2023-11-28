@@ -1,0 +1,52 @@
+From: Nicolas Dandrimont <olasd@debian.org>
+Date: Thu, 8 Oct 2015 08:41:07 -0700
+Subject: Move themes to /usr/share
+
+Forwarded: not-needed
+
+Patch-Name: 0001-move-themes-to-usr-share.patch
+---
+ cloud_sptheme/__init__.py | 2 +-
+ docs/conf.py              | 2 +-
+ setup.py                  | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/cloud_sptheme/__init__.py b/cloud_sptheme/__init__.py
+index 65cdd28..bf6c46a 100644
+--- a/cloud_sptheme/__init__.py
++++ b/cloud_sptheme/__init__.py
+@@ -64,7 +64,7 @@ all_exts = std_exts + [
+ _root_dir = os.path.abspath(os.path.dirname(__file__))
+ 
+ #: root of themes subdir
+-_theme_dir = os.path.join(_root_dir, "themes")
++_theme_dir = "/usr/share/sphinx/themes"
+ 
+ 
+ def get_theme_dir():
+diff --git a/docs/conf.py b/docs/conf.py
+index 190b526..c8537d7 100644
+--- a/docs/conf.py
++++ b/docs/conf.py
+@@ -167,7 +167,7 @@ if csp.is_cloud_theme(html_theme):
+ # Add any paths that contain custom themes here, relative to this directory.
+ if csp.is_cloud_theme(html_theme):
+     # so build works even if package isn't installed
+-    html_theme_path = [csp._theme_dir]
++    html_theme_path = [os.path.join(os.path.abspath(os.pardir), "cloud_sptheme", "themes")]
+ 
+ # The name for this set of Sphinx documents.  If None, it defaults to
+ # "<project> v<release> documentation".
+diff --git a/setup.py b/setup.py
+index a4e86e8..230bacc 100644
+--- a/setup.py
++++ b/setup.py
+@@ -27,7 +27,7 @@ opts = dict(
+     #==================================================================
+     packages=setuptools.find_packages(root_dir),
+     package_data={
+-        "cloud_sptheme": ["themes/*/*.*", "themes/*/static/*.*", "ext/static/*.*"]
++        "cloud_sptheme": ["ext/static/*.*"],
+     },
+     zip_safe=False,
+ 

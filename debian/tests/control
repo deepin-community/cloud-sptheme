@@ -1,0 +1,3 @@
+Tests: unittests
+Depends: python3-all, python3-mock, @
+Restrictions: allow-stderr

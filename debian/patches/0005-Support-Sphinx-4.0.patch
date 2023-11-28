@@ -1,0 +1,30 @@
+From: Morten Lund <melund@gmail.com>
+Date: Sun, 31 Oct 2021 13:57:09 -0700
+Subject: Support Sphinx 4.0
+
+Origin: https://foss.heptapod.net/doc-utils/cloud_sptheme/-/issues/45
+Bug-Upstream: https://foss.heptapod.net/doc-utils/cloud_sptheme/-/issues/45
+Bug-Debian: https://bugs.debian.org/997428
+---
+ cloud_sptheme/ext/escaped_samp_literals.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/cloud_sptheme/ext/escaped_samp_literals.py b/cloud_sptheme/ext/escaped_samp_literals.py
+index 6d10099..de460a2 100644
+--- a/cloud_sptheme/ext/escaped_samp_literals.py
++++ b/cloud_sptheme/ext/escaped_samp_literals.py
+@@ -84,12 +84,12 @@ def emph_literal_role(typ, rawtext, text, lineno, inliner,
+ # sphinx entry point
+ #=============================================================================
+ def setup(app):
+-    # register our handler to overrride sphinx.roles.emph_literal_role
++    # register our handler to overrride sphinx.roles.EmphasizedLiteral
+     from docutils.parsers.rst import roles
+     import sphinx.roles as mod
+     names = [
+         key for key,value in mod.specific_docroles.items()
+-        if value is mod.emph_literal_role
++        if value is mod.EmphasizedLiteral
+     ]
+     for name in names:
+         roles.register_local_role(name, emph_literal_role)

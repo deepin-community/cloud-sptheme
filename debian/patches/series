@@ -1,0 +1,6 @@
+0001-move-themes-to-usr-share.patch
+0002-Move-from-jinja2-to-markupsafe.patch
+0003-Remove-cookies-and-tracking.patch
+0003-Remove-docs-dependency-on-fulltoc-extension.patch
+0004-Adjust-test-for-Python-3.9-mock-4.0.3.patch
+0005-Support-Sphinx-4.0.patch
